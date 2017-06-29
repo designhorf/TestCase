@@ -1,6 +1,116 @@
+$darkgray: rgba(0, 0, 0, .7);
+$white: #fff;
+$secondary-color: #ffae12;
+
+@import 'mixins';
+
 * {
   margin: 0;
   padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  color: $white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2 {
+  line-height: 1.1;
+}
+
+h1 {
+  @include mobile {
+    font-size: 1.35em;
+  }
+
+  @include tablet {
+    font-size: 1.5em;
+  }
+
+  @include desktop {
+    font-size: 1.7em;
+  }
+
+  @include hd {
+    font-size: 2em;
+  }
+
+  font-size: 1em;
+}
+
+h2 {
+  @include mobile {
+    font-size: .75em;
+  }
+
+  @include tablet {
+    font-size: .85em;
+  }
+
+  @include desktop {
+    font-size: 1em;
+  }
+
+  @include hd {
+    font-size: 1.1em;
+  }
+
+  font-size: .55em;
+}
+
+.btn {
+  @include mobile {
+    font-size: .8em;
+    padding: 0 13px;
+  }
+
+  @include tablet {
+    font-size: .85em;
+    padding: 0 15px;
+  }
+
+  @include hd {
+    font-size: 1em;
+    height: initial;
+    padding: 10px 20px;
+  }
+
+  background-color: $secondary-color;
+  border: 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .65em;
+  font-weight: 600;
+  height: 33px;
+  margin-top: 5px;
+  outline: none;
+  padding: 0 10px;
+  transition: transform .5s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.moodboard,
+.test-moodboard {
+  @include mobile {
+    height: 216px;
+  }
+
+  @include desktop {
+    height: 280px;
+  }
+
+  @include hd {
+    height: 360px;
+  }
+
+  height: 160px;
 }
 
 .moodboard {
@@ -8,6 +118,189 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  box-sizing: border-box;
   display: flex;
-  height: 160px;
+  flex-direction: row;
+
+  .cake,
+  .mrgreen,
+  .slot {
+    position: absolute;
+  }
+
+  .mrgreen {
+    @include mobile {
+      right: 25%;
+      top: 60px;
+    }
+
+    @include tablet {
+      right: 22%;
+      top: 50px;
+    }
+
+    @include desktop {
+      top: 65px;
+    }
+
+    @include hd {
+      top: 100px;
+    }
+
+    right: 100px;
+    top: 50px;
+    z-index: 1;
+
+    &-img {
+      @include mobile {
+        height: 155px;
+      }
+
+      @include tablet {
+        height: 165px;
+      }
+
+      @include desktop {
+        height: 215px;
+      }
+
+      @include hd {
+        height: 260px;
+      }
+
+      height: 110px;
+      position: absolute;
+    }
+  }
+
+  .cake {
+    @include mobile {
+      right: 20%;
+      top: 54%;
+    }
+
+    @include tablet {
+      right: 18%;
+      top: 50%;
+    }
+
+    @include desktop {
+      right: 18%;
+      top: 52%;
+    }
+
+    @include hd {
+      right: 18%;
+      top: 55%;
+    }
+
+    right: 17%;
+    top: 51%;
+    z-index: 10;
+
+    &-img {
+      @include mobile {
+        height: 100px;
+      }
+
+      @include tablet {
+        height: 110px;
+      }
+
+      @include desktop {
+        height: 140px;
+      }
+
+      @include hd {
+        height: 170px;
+      }
+
+      height: 80px;
+    }
+  }
+
+  .slot {
+    @include mobile {
+      left: 7%;
+      top: 65px;
+    }
+
+    @include tablet {
+      left: 10%;
+      top: 55px;
+    }
+
+    @include desktop {
+      left: 10%;
+      top: 65px;
+    }
+
+    @include hd {
+      left: 9%;
+      top: 95px;
+    }
+
+    left: 4%;
+    top: 35px;
+
+    &-img {
+      @include mobile {
+        height: 130px;
+      }
+
+      @include tablet {
+        height: 140px;
+      }
+
+      @include desktop {
+        height: 195px;
+      }
+
+      @include hd {
+        height: 240px;
+      }
+
+      height: 105px;
+    }
+
+  }
 }
+
+.background-fade {
+  @media (min-width: 480px) and (max-width: 767px) {
+    margin-top: -120px;
+  }
+
+  @include hd {
+    margin-top: -130px;
+  }
+
+  background: linear-gradient(0deg, $darkgray 20%, transparent 100%);
+  bottom: 0;
+  margin-top: -113px;
+  padding: 44px 10px 10px;
+  position: relative;
+  width: 100%;
+  z-index: 10;
+
+  .mood-content {
+    @include tablet {
+      margin-top: -19px;
+    }
+
+    @include desktop {
+      margin-top: -25px;
+    }
+
+    @include hd {
+      margin-top: -22px;
+    }
+
+    background: 0 0;
+    height: auto;
+    margin: -5px auto 0;
+    position: relative;
+  }
+}
+
+
