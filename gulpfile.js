@@ -10,7 +10,8 @@ const gulp = require('gulp'),
     runSequence = require('run-sequence'),
     sassLint = require('gulp-sass-lint'),
     gulpCopy = require('gulp-copy'),
-    destination = './assets';
+    destination = './assets',
+    temp = './temp';
 
 
 const imgToCompress = './images/**/*';
@@ -23,16 +24,16 @@ gulp.task('clean', function () {
 gulp.task('sass', function () {
   return gulp.src('./stylesheets/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest(`${destination}/stylesheets`));
+    .pipe(gulp.dest(temp));
 });
 
 gulp.task('autoprefixer', function () {
-  const cssDest = `${destination}/stylesheets/*.css`,
-        cssMin = `${destination}/stylesheets`; 
+  const cssSrc = `${temp}/*.css`,
+        cssDest = `${destination}/stylesheets`; 
 
-  return gulp.src(cssDest)
+  return gulp.src(cssSrc)
     .pipe(postcss([autoprefixer({ browsers: ['last 2 versions'], cascade: false })]))
-    .pipe(gulp.dest(cssMin));
+    .pipe(gulp.dest(cssDest));
 });
 
 gulp.task('imagemin', function () {
@@ -50,7 +51,8 @@ gulp.task('sasslint', function () {
     .pipe(sassLint({
       rules: {
         'no-transition-all': 0,
-        'no-ids': 1
+        'no-ids': 1,
+        'no-vendor-prefixes': -1
       },
     }))
     .pipe(sassLint.format())
